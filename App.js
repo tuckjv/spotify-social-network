@@ -1,19 +1,15 @@
-import app from './Components/Firebase.js'
-import { AppState, StyleSheet, Text, View, } from 'react-native';
+import {StyleSheet, View } from 'react-native';
 import MainScreen  from './Screens/MainScreen.js'
 import ProfileScreen  from './Screens/Profile.js'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import React, { useState, useEffect, componentDidUpdate } from 'react';
+import React, { useState } from 'react';
 import LoginScreen from './Screens/LoginScreen.js'
 import CreateAccount from './Screens/CreateAccount.js'
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
 import PickUsername from './Screens/Username.js'
-import CreatePost from './Screens/CreatePost.js'
 import 'react-native-gesture-handler'; 
-import { getDoc, doc } from 'firebase/firestore';
-import {db} from './Components/Firestore.js'
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();

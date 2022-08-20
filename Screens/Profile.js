@@ -1,9 +1,8 @@
-import React, { useState, useEffect, componentDidUpdate } from 'react';
+import React, { useState } from 'react';
 import * as WebBrowser from 'expo-web-browser';
-import { makeRedirectUri, ResponseType, useAuthRequest } from 'expo-auth-session';
-import { StyleSheet, Text, View, Button} from 'react-native';
+import { ResponseType, useAuthRequest } from 'expo-auth-session';
+import { StyleSheet, View, Button} from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import  ProfilePicture  from 'react-native-profile-picture';
 import  DisplayFavArtists  from '../Components/DisplayFavArtists.js';
 import axios from 'axios';
 
@@ -15,12 +14,12 @@ const discovery = {
   tokenEndpoint: 'https://accounts.spotify.com/api/token',
 };
 
-const  ProfileScreen = ({ navigation, route }) => {
+const  ProfileScreen = ({ route }) => {
   const [access_token, setAccess_token] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(0);
   const [favArtist, setFavArtist] = useState([]);
   const [arrayIsValid, setArrayIsValid] = useState(0);
-    const [request, response, promptAsync] = useAuthRequest(
+    const [response, promptAsync] = useAuthRequest(
       {
         responseType: ResponseType.Token,
         clientId: '51e40babeeaa42a5881b977574140c7d',

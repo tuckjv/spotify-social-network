@@ -1,9 +1,9 @@
-import React, { useState, useEffect, componentDidUpdate } from 'react';
-import { StyleSheet, Text, View, TextInput, Button} from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View, TextInput, Button} from 'react-native';
 import {db} from '../Components/Firestore.js'
-import {getDoc, doc, setDoc, collection, addDoc, get, updateDoc, arrayUnion, Timestamp,} from 'firebase/firestore'
+import {doc, collection, addDoc, updateDoc, arrayUnion} from 'firebase/firestore'
 
-const CreatePost = ({navigation, route}) => {
+const CreatePost = ({route}) => {
     const [post, setPost] = useState("");
 
     handlePress = async () => {
@@ -23,15 +23,15 @@ const CreatePost = ({navigation, route}) => {
         await updateDoc(userRef, {
             recentPosts: arrayUnion(userData),
         })
-    }
+    }//When the user presses post, create a new post document, and then add the id of that post to their recent posts
 
     return(
         <View style = {styles.container}>
             <TextInput placeholder = {"Post here"} onChangeText = {setPost}/>
             <Button title = {"Upload Post"} onPress = {handlePress}/>
         </View>
-    );
-}
+    ); //Displat a text box and a post button to the user
+} //Allows for a user to input the text they want to use for a post
 
 export default CreatePost;
 

@@ -1,5 +1,5 @@
 import { View, TextInput, Button, StyleSheet, Text, Alert} from "react-native";
-import React, { useState, useEffect, componentDidUpdate } from 'react';
+import React, { useState } from 'react';
 import {db} from '../Components/Firestore.js'
 import {getDoc, doc, setDoc} from 'firebase/firestore'
 

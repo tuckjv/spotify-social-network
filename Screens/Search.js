@@ -1,27 +1,17 @@
-import { StyleSheet, TextInput, View, Button, FlatList, Text} from 'react-native';
-import React, { useState, useEffect, componentDidUpdate } from 'react';
+import { StyleSheet, View, Button, FlatList } from 'react-native';
+import React, { useState } from 'react';
 import { collection, query, where, getDocs } from "firebase/firestore";
 import {db} from '../Components/Firestore.js';
-import {Seachbar, Searchbar} from 'react-native-paper';
+import {Searchbar} from 'react-native-paper';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Search = ({navigation, route}) => {
     const [searchTerm, setSearchTerm] = useState("");
-    const [buttonText, setButtonText] = useState("User");
     const [results, setResults] = useState([]);
-
-    handlePress = () => {
-        if (buttonText === 'User') {
-            setButtonText("Artist");
-        }
-        else {
-            setButtonText("User");
-        }
-    }
 
     const handleListPress = (name, id) => {
         const currentUser = route.params.user;
-        console.log
-        const currentUserRef = route.params.currentUserRef;
+        const currentUserRef = route.params.userRef;
         navigation.navigate("UserPage", {name: name, id: id, currUser: currentUser, currentUserRef: currentUserRef});
     }
 
@@ -43,12 +33,7 @@ const Search = ({navigation, route}) => {
     }
 
     React.useEffect(() => {
-            if (buttonText === 'User') {
-                doUserQuery(searchTerm);
-            }
-            else {
-
-            }
+        doUserQuery(searchTerm);
     }, [searchTerm])
 
     const Item = ({ title, id }) => (
@@ -62,15 +47,14 @@ const Search = ({navigation, route}) => {
     );
 
     return (
-        <View style = {styles.container}>
-            <Button title = {buttonText} onPress = {handlePress}/>
+        <SafeAreaView style = {styles.container}>
             <Searchbar placeholder = "Search" onChangeText = {setSearchTerm} value = {searchTerm}/>
             <FlatList
                 data={results}
                 renderItem={renderItem}
                 keyExtractor={item => item.id}
             />
-        </View>
+        </SafeAreaView>
     );
 }
 
