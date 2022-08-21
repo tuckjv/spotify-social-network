@@ -19,7 +19,7 @@ const  ProfileScreen = ({ route }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(0);
   const [favArtist, setFavArtist] = useState([]);
   const [arrayIsValid, setArrayIsValid] = useState(0);
-    const [response, promptAsync] = useAuthRequest(
+    const [request, response, promptAsync] = useAuthRequest(
       {
         responseType: ResponseType.Token,
         clientId: '51e40babeeaa42a5881b977574140c7d',
@@ -30,14 +30,14 @@ const  ProfileScreen = ({ route }) => {
         redirectUri: "exp://localhost:19000",
       },
       discovery
-    );
+    ); //Authorize the user's Spotify credentials
 
     React.useEffect(() => {
       if (response?.type === 'success') {
         setAccess_token(response.params);
         setIsLoggedIn(1);
         }
-    }, [response]);
+    }, [response]); //If the login is a success, update the user's logged in status
 
     React.useEffect(() => {
       if (isLoggedIn === 1) {
@@ -49,7 +49,7 @@ const  ProfileScreen = ({ route }) => {
           }
         }).then((response) => setFavArtist([response.data.items[0]['name'], response.data.items[1]['name'], response.data.items[2]['name'], response.data.items[3]['name'], response.data.items[4]['name']])).then(setArrayIsValid(1));
       }
-    })
+    }) //When the user logs in to their Spotify account, send a get request to obtain their favorite artists
     id = route.params.user;
     return (
         
@@ -65,8 +65,8 @@ const  ProfileScreen = ({ route }) => {
         <StatusBar style="auto" />
         <Button title = {"Log out"} onPress = {() => {route.params.logOut()}}/>
       </View>
-    );
-}
+    ); //Display the logout and connect spostify buttons to the user. If they have connected their spotify display their favorite artists
+} //User Profile Screen which allows for connecting to your Spotify account
 
 export default ProfileScreen;
 

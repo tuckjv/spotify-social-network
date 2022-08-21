@@ -14,7 +14,7 @@ const UserPage = ({route}) => {
   const [user, setUser] = useState(0);
 
   useEffect(() => {
-    doStuff = async() => {
+    loadUser = async() => {
       id = route.params.id;
       const userRef = doc(db, "users", id);
       const docSnap = await getDoc(userRef);
@@ -31,9 +31,9 @@ const UserPage = ({route}) => {
       let currUser = route.params.currentUserRef;
       setCurrentUser(currUser);
       setUsetSet(1);
-    }
-    doStuff();
-  }, [])
+    } //Since useEffect cannot be asynchronous, create an asynchronous function inside useEffect and then call it
+    loadUser();
+  }, []) //On the initial load, retrieve all information about the user
 
   if (userSet === 1) {
     return (<View style = {styles.container}>
@@ -47,10 +47,10 @@ const UserPage = ({route}) => {
         <Text>{`Following: ${following}`}</Text>
         <FollowUnfollow user = {user} currUser = {currentUser} docRef = {docRef}/>
     </View>);
-  }
+  } //If the user information has finished being retrieved, display it
   else {
     return(<Text>Loading...</Text>)
-  }
+  } //If the user information has not beet retrieved, display a loading message
 }
 
 export default UserPage;
