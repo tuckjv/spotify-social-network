@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyC8z4OXEm1NCCH3WF07Yhj408qYkL8zY04",
+    apiKey: "*************",
     authDomain: "music-social-network-f1253.firebaseapp.com",
     projectId: "music-social-network-f1253",
     storageBucket: "music-social-network-f1253.appspot.com",
