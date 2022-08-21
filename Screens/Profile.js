@@ -22,7 +22,7 @@ const  ProfileScreen = ({ route }) => {
     const [request, response, promptAsync] = useAuthRequest(
       {
         responseType: ResponseType.Token,
-        clientId: '51e40babeeaa42a5881b977574140c7d',
+        clientId: '*************',
         scopes: ['user-read-email', 'playlist-modify-public', 'user-top-read'],
         // In order to follow the "Authorization Code Flow" to fetch token after authorizationEndpoint
         // this must be set to false
